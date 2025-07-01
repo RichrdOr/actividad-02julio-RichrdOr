@@ -8,12 +8,14 @@ from administrativo.models import Estudiante, \
 class EstudianteForm(ModelForm):
     class Meta:
         model = Estudiante
-        fields = ['nombre', 'apellido', 'cedula', 'correo']
+        fields = ['nombre', 'apellido', 'cedula', 'correo', 'telefono', 'tipo']
         labels = {
             'nombre': _('Ingrese nombre por favor'),
             'apellido': _('Ingrese apellido por favor'),
             'cedula': _('Ingrese cédula por favor'),
             'correo': _('Ingrese correo por favor'),
+            'telefono': _('Ingrese telefono por favor'),
+            'tipo': _('Ingrese el tipo por favor'),
         }
 
 
@@ -47,6 +49,18 @@ class EstudianteForm(ModelForm):
             raise forms.ValidationError("Ingrese correo válido para la Universidad")
         return valor
 
+    def clean_telefono(self):
+        valor = self.cleaned_data['telefono']
+        if len(valor) != 10:
+            raise form.ValidationError("Ingrese un numero de telefono de 10 digitos")
+        return valor
+
+    def clean_tipo(self):
+        valor = self.cleaned_data['tipo']
+        primera_letra = valor[0].lower()
+        if primera_letra in 'aeiou':
+            raise forms.ValidationError("Ingrese un  tipo correcto")
+        return valor
 
 class NumeroTelefonicoForm(ModelForm):
     class Meta:
