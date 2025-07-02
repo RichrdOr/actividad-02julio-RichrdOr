@@ -87,3 +87,11 @@ def detalle_estudiante(request, id):
 
 # crear módulos
 # crear estudiantes
+
+
+def obtener_matriculas(self):
+    return self.lasmatriculas.all()
+
+def total_matriculas(self):
+    sum_total = sum(m.costo for m in self.lasmatriculas.all())
+    return sum_total

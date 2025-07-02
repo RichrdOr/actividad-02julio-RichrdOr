@@ -1,10 +1,13 @@
+
+{% extends 'master.html' %}
+{% block title %}
 <h1>{{mititulo}}</h1>
 <hr>
+{% endblock %}
+{% block content %}
 <h3>Número de Matriculas {{ numero_matriculas }}</h3>
 <hr>
-[<a href="{% url 'crear_matricula' %}">nuevo</a>]
-<hr>
-<table border="1px">
+<table border="1px" id="tabla_datos"> 
   <tr>
     <th><b>Estudiante</b></th>
     <th><b>Módulo</b></th>
@@ -32,4 +35,10 @@
   {% endfor %}
 
 </table>
-<hr>
+<script type="text/javascript">
+  $(document).ready( function () {
+    $('#tabla_datos').DataTable();
+  });
+</script>
+{% endblock %}
+
