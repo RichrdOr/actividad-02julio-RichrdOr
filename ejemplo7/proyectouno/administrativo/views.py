@@ -6,6 +6,7 @@ from django.shortcuts import render
 # importar las clases de models.py
 from administrativo.models import Matricula, Estudiante
 from administrativo.forms import MatriculaForm, MatriculaEditForm
+from administrativo.forms import ModuloForm, EstudianteForm
 
 # vista que permita presesentar las matriculas
 # el nombre de la vista es index.
@@ -87,3 +88,25 @@ def detalle_estudiante(request, id):
 
 # crear módulos
 # crear estudiantes
+
+def crear_modulo(request):
+    print("crear_modulo")
+    if request.method == 'POST':
+        form = ModuloForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect(index)
+    else:
+        form = ModuloForm()
+    return render(request, 'crear_modulo.html', {'formulario': form})
+
+def crear_estudiante(request):
+    print("crear_estudiante")
+    if request.method == 'POST':
+        form = EstudianteForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect(index)
+    else:
+        form = EstudianteForm()
+    return render(request, 'crear_estudiante.html', {'formulario': form})

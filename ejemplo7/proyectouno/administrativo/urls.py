@@ -13,5 +13,7 @@ urlpatterns = [
                 name='editar_matricula'),
         path('detalle/estudiante/<int:id>', views.detalle_estudiante,
             name='detalle_estudiante'),
+        path('crear_modulo/', views.crear_modulo, name='crear_modulo'),
+        path('crear_estudiante/', views.crear_estudiante, name='crear_estudiante'),    
 
  ]

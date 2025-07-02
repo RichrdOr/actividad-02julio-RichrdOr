@@ -62,7 +62,7 @@ class Matricula(models.Model):
     modulo = models.ForeignKey(Modulo, related_name='lasmatriculas',
             on_delete=models.CASCADE)
     comentario = models.CharField(max_length=200)
-    costo = models.DecimalField(IntegerField=10, decimal_places=2)
+    costo = models.IntegerField()
 
 
     # Agregar costo

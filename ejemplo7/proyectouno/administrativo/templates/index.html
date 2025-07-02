@@ -12,10 +12,13 @@
     <th><b>Estudiante</b></th>
     <th><b>Módulo</b></th>
     <th><b>Comentario</b></th>
+    <th><b>Costo Total</b></th> <!-- Nueva columna -->
     <th><b>Opciones</b></th>
   </tr>
   {% for e in matriculas %}
+  {% if e.estudiante %}
   <tr>
+
     <td>
       {{e.estudiante.nombre}} <br>
       {{e.estudiante.get_tipo_estudiante_display }}
@@ -28,12 +31,15 @@
       {{e.comentario}}
     </td>
     <td>
+      {{e.estudiante.total_matriculas}} 
+    </td>
+    <td>
       [<a href="{% url 'detalle_matricula' e.id %}">ver</a>]
       [<a href="{% url 'editar_matricula' e.id %}">editar</a>]
     </td>
   </tr>
+  {% endif %}
   {% endfor %}
-
 </table>
 <script type="text/javascript">
   $(document).ready( function () {

@@ -1,7 +1,7 @@
 from django.forms import ModelForm
 from django import forms
 
-from administrativo.models import Matricula
+from administrativo.models import Matricula, Modulo, Estudiante
 
 class MatriculaForm(ModelForm):
     class Meta:
@@ -28,3 +28,14 @@ class MatriculaEditForm(ModelForm):
                 'cols': 40,
                 'placeholder': 'Escribe aquí tu comentario...'
             }),}
+
+
+class ModuloForm(forms.ModelForm):
+    class Meta:
+        model = Modulo
+        fields = ['nombre']
+
+class EstudianteForm(forms.ModelForm):
+    class Meta:
+        model = Estudiante
+        fields = ['nombre', 'apellido', 'cedula', 'edad', 'tipo_estudiante']
