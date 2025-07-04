@@ -18,16 +18,13 @@ class MatriculaEditForm(ModelForm):
         self.fields["estudiante"].widget = forms.widgets.HiddenInput()
         self.initial['modulo'] = self.instance.modulo
         self.fields["modulo"].widget = forms.widgets.HiddenInput()
+        self.initial['costo'] = self.instance.costo
+        self.fields["costo"].widget = forms.widgets.HiddenInput()
 
     class Meta:
         model = Matricula
-        fields = ['estudiante', 'modulo', 'comentario']
-        widgets = {
-            'comentario': forms.Textarea(attrs={
-                'rows': 4,
-                'cols': 40,
-                'placeholder': 'Escribe aquí tu comentario...'
-            }),}
+        fields = ['estudiante', 'modulo', 'comentario', 'costo']
+        widgets = {'comentario': forms.Textarea(attrs={'rows': 4,'cols': 40,'placeholder': 'Escribe aquí tu comentario...'}),}
 
 
 class ModuloForm(forms.ModelForm):

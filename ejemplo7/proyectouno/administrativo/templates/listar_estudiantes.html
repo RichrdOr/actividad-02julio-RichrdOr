@@ -1,0 +1,64 @@
+
+{% extends 'master.html' %}
+{% block content %}
+<h3>Número de Estudiantes {{ numero_estudiantes }}</h3>
+<hr>
+<table border="1px" id="tabla_datos"> 
+  <tr>
+    <th><b>Nombre</b></th>
+    <th><b>Apellido</b></th>
+    <th><b>Edad</b></th>
+    <th><b>Cédula</b></th> 
+    <th><b>Tipo Estudiante</b></th>
+    <th><b>Costo Matriculas</b></th> 
+  </tr>
+  {% for e in estudiantes %}
+  <tr>
+    
+    <td>
+      {{e.nombre}} <br>
+      [<a href="{% url 'detalle_estudiante' e.id %}">+</a>]
+    </td>
+    <td>
+      {{e.apellido}}
+    </td>
+    <td>
+      {{e.edad}}
+    </td>
+    <td>
+      {{e.cedula}} 
+    </td>
+    <td>
+      {{e.get_tipo_estudiante_display }}
+    </td>
+    <td>
+        <table border="1px"> 
+            <tr>
+                <th><b>Módulo</b></th>
+                <th><b>Costo</b></th>
+            </tr>
+            {% for m in e.obtener_matriculas  %}
+            <tr>
+                <td>
+                    {{m.modulo.nombre}}
+                </td>
+                <td>
+                    {{m.costo}}
+                </td>
+            </tr>
+            {% endfor %}
+        </table>
+      <p>
+        Total: {{e.total_matriculas}}
+      </p>
+    </td>
+  </tr>
+  {% endfor %}
+</table>
+<script type="text/javascript">
+  $(document).ready( function () {
+    $('#tabla_datos').DataTable();
+  });
+</script>
+{% endblock %}
+

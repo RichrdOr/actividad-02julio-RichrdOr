@@ -1,3 +1,5 @@
+{% extends "master.html" %}
+{% block content %}
 <h2>Crear Matricula</h2>
 
 <form action="" method="post">
@@ -5,5 +7,4 @@
   {{formulario.as_p}}
   <p><input type='submit' value='Agregar'/></p>
 </form>
-
-[<a href="{% url 'index' %}">inicio</a>]
+{% endblock %}

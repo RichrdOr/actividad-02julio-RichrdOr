@@ -1,0 +1,30 @@
+
+{% extends 'master.html' %}
+{% block content %}
+<h3>Número de Modulos {{ numero_modulos }}</h3>
+<hr>
+<table border="1px" id="tabla_datos"> 
+  <tr>
+    <th><b>Nombre del módulo</b></th>
+    <th><b>valor de todas las matriculas del modulo</b></th>
+  </tr>
+  {% for m in modulos %}
+  <tr>
+    <td>
+      {{m.nombre}} <br>
+    </td>
+    <td>
+      <p>
+        {{m.total_}}
+      </p>
+    </td>
+  </tr>
+  {% endfor %}
+</table>
+<script type="text/javascript">
+  $(document).ready( function () {
+    $('#tabla_datos').DataTable();
+  });
+</script>
+{% endblock %}
+

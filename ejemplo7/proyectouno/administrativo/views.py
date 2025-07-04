@@ -4,7 +4,7 @@ from django.template import RequestContext
 from django.shortcuts import render
 
 # importar las clases de models.py
-from administrativo.models import Matricula, Estudiante
+from administrativo.models import Matricula, Estudiante, Modulo
 from administrativo.forms import MatriculaForm, MatriculaEditForm
 from administrativo.forms import ModuloForm, EstudianteForm
 
@@ -17,8 +17,7 @@ def index(request):
     matriculas = Matricula.objects.all()
 
     titulo = "Listado de matriculas"
-    informacion_template = {'matriculas': matriculas,
-    'numero_matriculas': len(matriculas), 'mititulo': titulo}
+    informacion_template = {'matriculas': matriculas,'numero_matriculas': len(matriculas), 'mititulo': titulo}
     return render(request, 'index.html', informacion_template)
 
 
@@ -100,6 +99,7 @@ def crear_modulo(request):
         form = ModuloForm()
     return render(request, 'crear_modulo.html', {'formulario': form})
 
+
 def crear_estudiante(request):
     print("crear_estudiante")
     if request.method == 'POST':
@@ -110,3 +110,15 @@ def crear_estudiante(request):
     else:
         form = EstudianteForm()
     return render(request, 'crear_estudiante.html', {'formulario': form})
+
+
+def listar_Estudiante(request):
+    estudiantes = Estudiante.objects.all()
+    numero_estudiantes = len(estudiantes)
+    return render(request, 'listar_estudiantes.html', {'estudiantes': estudiantes, 'numero_estudiantes': numero_estudiantes})    
+
+
+def listar_modulo(request):
+    modulos = Modulo.objects.all()
+    numero_modulos = len(modulos)
+    return render(request, 'listar_modulos.html', {'modulos': modulos, 'numero_modulos': numero_modulos})    

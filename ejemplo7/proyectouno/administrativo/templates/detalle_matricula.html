@@ -1,4 +1,5 @@
-
+{% extends 'master.html' %}
+{% block content %}
 
 <h3>Detalle de Matricula</h3>
 
@@ -7,4 +8,5 @@
 <b>Modulo:</b> {{matricula.modulo}}
 
 </br>
-[<a href="{% url 'index' %}">inicio</a>]
+
+{% endblock %}

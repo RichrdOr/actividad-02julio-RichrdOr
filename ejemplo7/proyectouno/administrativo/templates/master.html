@@ -17,7 +17,6 @@
   </head>
   <body>
   <header>
-    <img src="{% static 'images/logo.png' %}" height="10%" width="10%" alt="My image">
     <h1>Aplicación Administración </h1>
     <nav class="top_menu">
       <ul>
@@ -25,6 +24,8 @@
         <li><a href="{% url 'crear_matricula' %}">agregar matricula</a></li>
         <li><a href="{% url 'crear_estudiante' %}">agregar estudiante</a></li>
         <li><a href="{% url 'crear_modulo' %}">agregar modulo</a></li>
+        <li><a href="{% url 'listar_estudiantes' %}">listar estudiantes</a></li>
+        <li><a href="{% url 'listar_modulos' %}">listar modulos</a></li>
       </ul>
     </nav>
   </header>

@@ -1,3 +1,5 @@
+{% extends 'master.html' %}
+{% block content %}
 <h2>Detalle estudiante</h2>
 
 <b>Nombre:</b> {{e.nombre}}
@@ -9,7 +11,7 @@
 <b>Cédula:</b> {{e.cedula}}
 </br>
 <hr>
-<table border="1px">
+<table border="1px" id="tabla_datos">
   <tr>
     <th><b>Módulo</b></th>
     <th><b>comentario</b></th>
@@ -28,6 +30,10 @@
   {% endfor %}
 
 </table>
+<script type="text/javascript">
+  $(document).ready( function () {
+    $('#tabla_datos').DataTable();
+  });
+</script>
+{% endblock %}
 
-</br>
-[<a href="{% url 'index' %}">inicio</a>]
