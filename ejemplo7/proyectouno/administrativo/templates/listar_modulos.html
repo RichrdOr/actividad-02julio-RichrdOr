@@ -1,30 +1,31 @@
-
 {% extends 'master.html' %}
 {% block content %}
-<h3>Número de Modulos {{ numero_modulos }}</h3>
-<hr>
-<table border="1px" id="tabla_datos"> 
-  <tr>
-    <th><b>Nombre del módulo</b></th>
-    <th><b>valor de todas las matriculas del modulo</b></th>
-  </tr>
-  {% for m in modulos %}
-  <tr>
-    <td>
-      {{m.nombre}} <br>
-    </td>
-    <td>
-      <p>
-        {{m.total_}}
-      </p>
-    </td>
-  </tr>
-  {% endfor %}
-</table>
+<div class="container my-5">
+  <h3 class="mb-4" style="font-family: var(--title-font-family); color: var(--primary-color);">
+    Número de Módulos <span class="badge bg-primary">{{ numero_modulos }}</span>
+  </h3>
+  <div class="table-responsive">
+    <table class="table table-striped table-hover align-middle" id="tabla_datos">
+      <thead class="table-dark">
+        <tr>
+          <th>Nombre del módulo</th>
+          <th>Valor de todas las matrículas del módulo</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for m in modulos %}
+        <tr>
+          <td>{{ m.nombre }}</td>
+          <td>${{ m.total_ }}</td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+</div>
 <script type="text/javascript">
-  $(document).ready( function () {
+  $(document).ready(function () {
     $('#tabla_datos').DataTable();
   });
 </script>
 {% endblock %}
-

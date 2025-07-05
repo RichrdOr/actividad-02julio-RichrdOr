@@ -1,39 +1,66 @@
 {% extends 'master.html' %}
+{% block title %}
+  Detalle Estudiante
+{% endblock %}
 {% block content %}
-<h2>Detalle estudiante</h2>
-
-<b>Nombre:</b> {{e.nombre}}
-</br>
-<b>Apellido:</b> {{e.apellido}}
-</br>
-<b>Edad:</b> {{e.edad}}
-</br>
-<b>Cédula:</b> {{e.cedula}}
-</br>
-<hr>
-<table border="1px" id="tabla_datos">
-  <tr>
-    <th><b>Módulo</b></th>
-    <th><b>comentario</b></th>
-
-  </tr>
-  {% for m in e.obtener_matriculas %}
-  <tr>
-    <td>
-      {{m.modulo.nombre}}
-    </td>
-    <td>
-      {{m.comentario}}
-    </td>
-
-  </tr>
-  {% endfor %}
-
-</table>
+<div class="container my-5">
+  <div class="row justify-content-center">
+    <div class="col-lg-8 col-md-10">
+      <div class="card shadow border-0 mb-4" style="border-radius: 20px;">
+        <div class="card-body">
+          <h3 class="mb-4" style="font-family: var(--title-font-family); color: var(--primary-color);">Detalle del Estudiante</h3>
+          <div class="row mb-3">
+            <div class="col-md-6 mb-2">
+              <strong>Nombre:</strong> {{ e.nombre }}
+            </div>
+            <div class="col-md-6 mb-2">
+              <strong>Apellido:</strong> {{ e.apellido }}
+            </div>
+            <div class="col-md-6 mb-2">
+              <strong>Edad:</strong> {{ e.edad }}
+            </div>
+            <div class="col-md-6 mb-2">
+              <strong>Cédula:</strong> {{ e.cedula }}
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Sección de matrículas mucho más ancha -->
+    <div class="col-12">
+      <div class="card shadow border-0" style="border-radius: 20px;">
+        <div class="card-body">
+          <h5 class="mb-3" style="font-family: var(--title-font-family); color: var(--primary-color);">Matrículas del estudiante</h5>
+          <div class="table-responsive">
+            <table class="table table-striped align-middle mb-0 custom-form" id="tabla_datos">
+              <thead class="table-dark">
+                <tr>
+                  <th>Módulo</th>
+                  <th>Comentario</th>
+                </tr>
+              </thead>
+              <tbody>
+                {% for m in e.obtener_matriculas %}
+                <tr>
+                  <td>{{ m.modulo.nombre }}</td>
+                  <td>{{ m.comentario }}</td>
+                </tr>
+                {% empty %}
+                <tr>
+                  <td colspan="2" class="text-center">No tiene matrículas registradas.</td>
+                </tr>
+                {% endfor %}
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
 <script type="text/javascript">
-  $(document).ready( function () {
+  $(document).ready(function () {
     $('#tabla_datos').DataTable();
   });
 </script>
 {% endblock %}
-

@@ -1,12 +1,30 @@
 {% extends 'master.html' %}
+{% block title %}
+  Detalle de Matrícula
+{% endblock %}
 {% block content %}
-
-<h3>Detalle de Matricula</h3>
-
-<b>Nombre:</b> {{matricula.estudiante}}
-</br>
-<b>Modulo:</b> {{matricula.modulo}}
-
-</br>
-
+<div class="container d-flex justify-content-center align-items-center" style="min-height: 80vh;">
+  <div class="mx-auto" style="max-width: 600px; width: 100%;">
+    <div class="card shadow p-5 border-0" style="border-radius: 20px;">
+      <div class="card-body">
+        <h3 class="mb-4 text-center" style="font-family: var(--title-font-family); color: var(--primary-color);">Detalle de Matrícula</h3>
+        <div class="mb-3">
+          <strong>Estudiante:</strong> {{ matricula.estudiante }}
+        </div>
+        <div class="mb-3">
+          <strong>Módulo:</strong> {{ matricula.modulo }}
+        </div>
+        <div class="mb-3">
+          <strong>Comentario:</strong> {{ matricula.comentario }}
+        </div>
+        <div class="mb-3">
+          <strong>Costo:</strong> ${{ matricula.costo }}
+        </div>
+        <div class="text-center mt-4">
+          <a href="{% url 'index' %}" class="btn custom-btn">Volver al inicio</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
 {% endblock %}

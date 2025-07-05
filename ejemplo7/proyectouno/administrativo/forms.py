@@ -32,7 +32,41 @@ class ModuloForm(forms.ModelForm):
         model = Modulo
         fields = ['nombre']
 
+    def clean_nombre(self):
+        nombre = self.cleaned_data['nombre'].strip()
+        if Modulo.objects.filter(nombre__iexact=nombre).exists():
+            raise forms.ValidationError("Ya existe un módulo con ese nombre. Ingrese uno diferente.")
+        return nombre
+
 class EstudianteForm(forms.ModelForm):
     class Meta:
         model = Estudiante
         fields = ['nombre', 'apellido', 'cedula', 'edad', 'tipo_estudiante']
+
+    def clean_nombre(self):
+        valor = self.cleaned_data['nombre']
+        if len(valor.split()) < 2:
+            raise forms.ValidationError("Ingrese al menos dos nombres.")
+        return valor
+
+    def clean_apellido(self):
+        valor = self.cleaned_data['apellido']
+        if len(valor.split()) < 2:
+            raise forms.ValidationError("Ingrese al menos dos apellidos.")
+        return valor
+
+    def clean_cedula(self):
+        valor = self.cleaned_data['cedula']
+        if not valor.isdigit():
+            raise forms.ValidationError("La cédula debe contener solo números.")
+        if len(valor) != 10:
+            raise forms.ValidationError("La cédula debe tener exactamente 10 dígitos.")
+        return valor
+
+    def clean_edad(self):
+        valor = self.cleaned_data['edad']
+        if not isinstance(valor, int):
+            raise forms.ValidationError("La edad debe ser un número.")
+        if valor <= 0:
+            raise forms.ValidationError("La edad debe ser mayor a 0.")
+        return valor
